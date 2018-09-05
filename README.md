@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Grupo-G-022018-DAPP-lCoronel-aRodriguez/GrupoG-Backend.svg?branch=master)](https://travis-ci.com/Grupo-G-022018-DAPP-lCoronel-aRodriguez/GrupoG-Backend)
+
 # Subasteando-Backend
 Proyecto backend de la materia Desarrollo de Aplicaciones.
 
