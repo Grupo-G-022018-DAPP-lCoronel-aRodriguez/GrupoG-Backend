@@ -8,6 +8,9 @@ public class User {
 	private String email;
 	private String password;
 	private Date birth;
+	private Boolean logged;
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -39,8 +42,11 @@ public class User {
 		this.birth = birth;
 	}
 	
-	public void doAuction() {
+	public void doAuction(Aunction toBuy ) {
 		//el usuario puede subastar
+		// if toBuy.lastBidderName == this.name
+		//     no hacer nada
+		
 	}
 
 }
