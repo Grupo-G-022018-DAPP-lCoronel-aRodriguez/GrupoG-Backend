@@ -4,25 +4,36 @@ import java.util.Date;
 import java.util.List;
 
 public class Auction {
-	private String tittle;
+	private String title;
 	private String description;
 	private String address;
 	private String photoURL;
-	private Integer price;//por simplicidad Integer, luego veremos cual queda mejor
-	private Date publicationDate;
+	private Integer initialPrice;
+
+    private Date publicationDate;
 	private Date untilDate;
+
 	private State state;
 	private String ownerEmail;
 	private String lastBidderName = null;
 	private List previousPrices = null; // la lista de precios anteriores
 
+    public Auction(String title, String description, String address, Integer price){
+        this.title = title;
+        this.description = description;
+        this.address = address;
+        this.initialPrice = price;
 
-	public String getTittle() {
-		return tittle;
+        this.state = new NewState();
+    }
+
+
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTittle(String tittle) {
-		this.tittle = tittle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
@@ -49,12 +60,12 @@ public class Auction {
 		this.photoURL = photoURL;
 	}
 
-	public Integer getPrice() {
-		return price;
+	public Integer getInitialPrice() {
+		return initialPrice;
 	}
 
-	public void setPrice(Integer price) {
-		this.price = price;
+	public void setInitialPrice(Integer initialPrice) {
+		this.initialPrice = initialPrice;
 	}
 
 	public State getState() {

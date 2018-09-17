@@ -100,15 +100,9 @@ public class User {
 	
 	// Methods
 	
-	public void createAuction(String title, String description, int price){
+	public void createAuction(String title, String description, String address, Integer price){
 	    //TODO: only for registered users
-		Auction newAuction = new Auction();
-
-		newAuction.setTittle(title);
-		newAuction.setDescription(description);
-		newAuction.setPrice(price);
-
-		newAuction.setState(new NewState());
+		Auction newAuction = new Auction(title,description,address,price);
 
 		newAuction.setOwnerEmail(this.getEmail());
 	}
