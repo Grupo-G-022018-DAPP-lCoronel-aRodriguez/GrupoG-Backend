@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Auction {
@@ -10,8 +10,8 @@ public class Auction {
 	private String photoURL;
 	private Integer initialPrice;
 
-    private Date publicationDate;
-	private Date untilDate;
+    private LocalDate publicationDate;
+	private LocalDate untilDate;
 
 	private State state;
 	private String ownerEmail;
@@ -24,6 +24,7 @@ public class Auction {
         this.address = address;
         this.initialPrice = price;
 
+        this.publicationDate = LocalDate.now();
         this.state = new NewState();
     }
 
