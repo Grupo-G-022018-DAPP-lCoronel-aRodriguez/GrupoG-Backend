@@ -14,7 +14,7 @@ public class User {
 	private String email;
 	private String password;
 	private Date birth;
-	private Boolean logged;
+	private Boolean logged = false;
 	
 	
 	//Getters, Setters, Validation
@@ -96,7 +96,10 @@ public class User {
 		//return birth.after(Date(1,1,1990);
 		return true;
 	}
-
+	
+	
+	// Methods
+	
 	public void doAuction(Aunction toBuy ) {
 		//el usuario puede subastar
 		// if toBuy.lastBidderName == this.name
