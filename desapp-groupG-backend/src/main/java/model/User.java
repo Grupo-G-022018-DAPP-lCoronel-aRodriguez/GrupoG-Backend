@@ -100,11 +100,17 @@ public class User {
 	
 	// Methods
 	
-	public void doAuction(Aunction toBuy ) {
-		//el usuario puede subastar
-		// if toBuy.lastBidderName == this.name
-		//     no hacer nada
-		
+	public void createAuction(String title, String description, int price){
+	    //TODO: only for registered users
+		Auction newAuction = new Auction();
+
+		newAuction.setTittle(title);
+		newAuction.setDescription(description);
+		newAuction.setPrice(price);
+
+		newAuction.setState(new NewState());
+
+		newAuction.setOwnerEmail(this.getEmail());
 	}
 
 }
