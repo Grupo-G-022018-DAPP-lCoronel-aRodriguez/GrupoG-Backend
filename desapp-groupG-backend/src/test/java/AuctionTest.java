@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class AuctionTest {
+
     private Auction auction;
 
     @Before
