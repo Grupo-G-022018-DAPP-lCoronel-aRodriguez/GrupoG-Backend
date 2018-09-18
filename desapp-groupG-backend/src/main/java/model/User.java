@@ -1,22 +1,23 @@
 package model;
 
 import exceptions.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class User {
-	private String name;
-	private String surname;
-	private String email;
-	private String password;
-	private LocalDate birth;
+	@NotNull private String name;
+    @NotNull private String surname;
+    @NotNull private String email;
+    @NotNull private String password;
+    @NotNull private LocalDate birth;
 	private Boolean logged = false;
 	
 	
 	//Getters, Setters
 	
-	public String getName() {
+	@NotNull
+    public String getName() {
 		return name;
 	}
 	
@@ -27,7 +28,8 @@ public class User {
 			{ throw new InvalidNameException(); }
 	}
 
-	public String getSurname() {
+	@NotNull
+    public String getSurname() {
 		return surname;
 	}
 	
@@ -38,7 +40,8 @@ public class User {
 			{ throw new InvalidSurnameException(); }
 	}
 
-	public String getEmail() {
+	@NotNull
+    public String getEmail() {
 		return email;
 	}
 	
@@ -49,7 +52,8 @@ public class User {
 			{ throw new InvalidEmailException(); }
 	}
 
-	public String getPassword() {
+	@NotNull
+    public String getPassword() {
 		return password;
 	}
 	
@@ -60,7 +64,8 @@ public class User {
 			{ throw new InvalidPasswordException(); }
 	}
 
-	public LocalDate getBirth() {
+	@NotNull
+    public LocalDate getBirth() {
 		return birth;
 	}
 	
@@ -74,6 +79,12 @@ public class User {
 	
 	// Methods
 	
+    public String viewDetails(Auction auction){
+	    //TODO el detalle de la subasta cambia segun su estado
+	    String title = auction.getTitle();
+	    String desc = auction.getDescription();
 
+	    return title + "\n\n" + desc;
+    }
 
 }

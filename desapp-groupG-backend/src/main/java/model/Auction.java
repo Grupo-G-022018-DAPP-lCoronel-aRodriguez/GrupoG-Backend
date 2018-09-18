@@ -1,6 +1,6 @@
 package model;
 
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -37,11 +37,13 @@ public class Auction {
     }
 
 
-	public String getTitle() {
+	@NotNull
+    public String getTitle() {
 		return title;
 	}
 
-	public String getDescription() {
+	@NotNull
+    public String getDescription() {
 		return description;
 	}
 
@@ -61,7 +63,8 @@ public class Auction {
 		this.photoURL = photoURL;
 	}
 
-	public Integer getInitialPrice() {
+	@NotNull
+    public Integer getInitialPrice() {
 		return initialPrice;
 	}
 
