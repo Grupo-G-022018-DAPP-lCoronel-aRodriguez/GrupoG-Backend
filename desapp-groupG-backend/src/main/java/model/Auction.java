@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class Auction {
@@ -12,19 +13,22 @@ public class Auction {
 
     private LocalDate publicationDate;
 	private LocalDate untilDate;
+	private LocalTime untilTime;
 
 	private State state;
 	private String ownerEmail;
 	private String lastBidderName = null;
 	private List previousPrices = null; // la lista de precios anteriores
 
-    public Auction(String title, String description, String address, Integer price){
+    public Auction(String title, String description, Integer price, LocalDate start, LocalDate end, LocalTime endHour){
         this.title = title;
         this.description = description;
-        this.address = address;
         this.initialPrice = price;
 
-        this.publicationDate = LocalDate.now();
+        this.publicationDate = start;
+        this.untilDate = end;
+        this.untilTime = endHour;
+
         this.state = new NewState();
     }
 
@@ -33,16 +37,8 @@ public class Auction {
 		return title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public String getDescription() {
 		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getAddress() {
@@ -63,10 +59,6 @@ public class Auction {
 
 	public Integer getInitialPrice() {
 		return initialPrice;
-	}
-
-	public void setInitialPrice(Integer initialPrice) {
-		this.initialPrice = initialPrice;
 	}
 
 	public State getState() {

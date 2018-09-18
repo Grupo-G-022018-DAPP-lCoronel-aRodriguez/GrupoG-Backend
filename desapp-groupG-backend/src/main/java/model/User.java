@@ -1,6 +1,7 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import exceptions.InvalidBirthException;
 import exceptions.InvalidEmailException;
@@ -13,7 +14,7 @@ public class User {
 	private String surname;
 	private String email;
 	private String password;
-	private Date birth;
+	private LocalDate birth;
 	private Boolean logged = false;
 	
 	
@@ -81,28 +82,30 @@ public class User {
 		return password.length() >= 4 && password.length() < 30;
 	}
 
-	public Date getBirth() {
+	public LocalDate getBirth() {
 		return birth;
 	}
 	
-	public void setBirth(Date birth) throws InvalidBirthException {
+	public void setBirth(LocalDate birth) throws InvalidBirthException {
 		if (isValidDate(birth))
 			{ this.birth = birth; }
 		else
 			{ throw new InvalidBirthException(); }
 	}
 	
-	private boolean isValidDate(Date birth) {
+	private boolean isValidDate(LocalDate birth) {
 		//return birth.after(Date(1,1,1990);
+		//TODO validar la fecha, tiene que ser antes de hoy y despues de 1900
+		//TODO validar formato DD/MM/YYYY, validar +18
 		return true;
 	}
 	
 	
 	// Methods
 	
-	public void createAuction(String title, String description, String address, Integer price){
+	public void createAuction(String title, String description, Integer price, LocalDate start, LocalDate end, LocalTime endHour){
 	    //TODO: only for registered users
-		Auction newAuction = new Auction(title,description,address,price);
+		Auction newAuction = new Auction(title,description, price, start, end, endHour);
 
 		newAuction.setOwnerEmail(this.getEmail());
 	}
