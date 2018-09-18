@@ -5,6 +5,7 @@ import exceptions.InvalidNameException;
 import exceptions.InvalidPasswordException;
 import exceptions.InvalidSurnameException;
 import model.Auction;
+import model.RegisteredUser;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,14 +17,18 @@ import java.time.LocalTime;
 public class UserTest {
 
     private User user;
-    private User anotherUser;
+    private RegisteredUser anotherUser;
+    private RegisteredUser regUser;
 
     @Before
     public void setUp() throws InvalidEmailException {
         user = new User();
         user.setEmail("usuario@dominio.com");
 
-        anotherUser = new User();
+        regUser = new RegisteredUser();
+        regUser.setEmail("registrado@hotmail.com");
+
+        anotherUser = new RegisteredUser();
         anotherUser.setEmail("otro@gmail.com");
     }
 
@@ -96,7 +101,7 @@ public class UserTest {
         LocalDate end = LocalDate.of(2018, 9, 27);
         LocalTime endHour = LocalTime.of(23,50,0);
 
-        Auction auction = user.createAuction("ejemplo","descripcion", 20, start, end, endHour);
+        Auction auction = regUser.createAuction("ejemplo","descripcion", 20, start, end, endHour);
 
         assertNotNull(auction);
 
@@ -104,7 +109,7 @@ public class UserTest {
         assertEquals("descripcion", auction.getDescription());
         assertEquals(20, (long)auction.getInitialPrice());
 
-        assertEquals("usuario@dominio.com", auction.getOwnerEmail());
+        assertEquals("registrado@hotmail.com", auction.getOwnerEmail());
 
     }
 
@@ -114,9 +119,9 @@ public class UserTest {
         LocalDate end = LocalDate.of(2018, 9, 27);
         LocalTime endHour = LocalTime.of(23,50,0);
 
-        Auction auction = user.createAuction("ejemplo","descripcion", 20, start, end, endHour);
+        Auction auction = regUser.createAuction("ejemplo","descripcion", 20, start, end, endHour);
 
-        user.bidAuction(auction);
+        regUser.bidAuction(auction);
         //el precio no cambia porque soy el mismo dueño, no
         //puedo ofertar
         assertEquals(20, (long)auction.getCurrentPrice());
@@ -128,7 +133,7 @@ public class UserTest {
         LocalDate end = LocalDate.of(2018, 9, 27);
         LocalTime endHour = LocalTime.of(23,50,0);
 
-        Auction auction = user.createAuction("ejemplo","descripcion", 20, start, end, endHour);
+        Auction auction = regUser.createAuction("ejemplo","descripcion", 20, start, end, endHour);
 
         anotherUser.bidAuction(auction);
         //el precio cambia
