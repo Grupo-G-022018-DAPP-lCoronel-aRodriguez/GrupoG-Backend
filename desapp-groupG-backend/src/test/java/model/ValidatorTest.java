@@ -1,3 +1,4 @@
+package model;
 
 import model.Validator;
 import org.junit.Test;
