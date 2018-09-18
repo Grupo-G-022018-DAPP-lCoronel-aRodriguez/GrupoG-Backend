@@ -18,7 +18,7 @@ public class Auction {
     @NotNull private LocalDate untilDate;
     @NotNull private LocalTime untilTime;
 
-	private State state;
+	private AuctionState auctionState;
 	private String ownerEmail;
 	private String lastBidderName = null;
 	private List previousPrices = null; // la lista de precios anteriores
@@ -33,7 +33,7 @@ public class Auction {
         this.untilDate = end;
         this.untilTime = endHour;
 
-        this.state = new NewState();
+        this.auctionState = new NewState();
     }
 
 
@@ -65,23 +65,23 @@ public class Auction {
 		return initialPrice;
 	}
 
-	public State getState() {
-		return state;
+	public AuctionState getAuctionState() {
+		return auctionState;
 	}
 
-	public void setState(State state) {
-		this.state = state;
+	public void setAuctionState(AuctionState auctionState) {
+		this.auctionState = auctionState;
 	}
 
 	public String getOwnerEmail() {
 		return ownerEmail;
 	}
 
-	public void setOwnerEmail(String ownerEmail) {
+	void setOwnerEmail(String ownerEmail) {
 		this.ownerEmail = ownerEmail;
 	}
 
-    public void setCurrentPrice(Integer currentPrice) {
+    private void setCurrentPrice(Integer currentPrice) {
         this.currentPrice = currentPrice;
     }
 
@@ -91,7 +91,7 @@ public class Auction {
 
 	//Methods
 
-    public void acceptBid() {
+    void acceptBid() {
         //TODO chequear estado InProgress
         this.setCurrentPrice((int) (getInitialPrice() + (getInitialPrice() * 0.5)));
     }

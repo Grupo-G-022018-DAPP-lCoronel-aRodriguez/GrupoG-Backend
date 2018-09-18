@@ -1,5 +1,5 @@
 package model;
 
-public class NewState extends State {
+public class NewState extends AuctionState {
 
 }
