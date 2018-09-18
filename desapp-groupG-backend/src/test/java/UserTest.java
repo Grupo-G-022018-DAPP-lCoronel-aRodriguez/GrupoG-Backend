@@ -4,23 +4,33 @@ import exceptions.InvalidEmailException;
 import exceptions.InvalidNameException;
 import exceptions.InvalidPasswordException;
 import exceptions.InvalidSurnameException;
+import model.Auction;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import model.User;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class UserTest {
 
     private User user;
+    private User anotherUser;
 
     @Before
-    public void setUp() {
+    public void setUp() throws InvalidEmailException {
         user = new User();
+        user.setEmail("usuario@dominio.com");
+
+        anotherUser = new User();
+        anotherUser.setEmail("otro@gmail.com");
     }
 
     @After
     public void tearDown() {
         user = null;
+        anotherUser = null;
     }
 
     @Test
@@ -76,6 +86,53 @@ public class UserTest {
     public void testSetInvalidPasswordLong() throws InvalidPasswordException {
         user.setPassword("abcdefghijklmnopqrstuvwxyzabcd");
         assertEquals("abcdefghijklmnopqrstuvwxyzabcd",user.getPassword());
+    }
+
+    //test Methods
+
+    @Test
+    public void testCreateAuction(){
+        LocalDate start = LocalDate.of(2018,9,23);
+        LocalDate end = LocalDate.of(2018, 9, 27);
+        LocalTime endHour = LocalTime.of(23,50,0);
+
+        Auction auction = user.createAuction("ejemplo","descripcion", 20, start, end, endHour);
+
+        assertNotNull(auction);
+
+        assertEquals("ejemplo", auction.getTitle());
+        assertEquals("descripcion", auction.getDescription());
+        assertEquals(20, (long)auction.getInitialPrice());
+
+        assertEquals("usuario@dominio.com", auction.getOwnerEmail());
+
+    }
+
+    @Test
+    public void testBidAuctionShouldFailIfOwnerBids(){
+        LocalDate start = LocalDate.of(2018,9,23);
+        LocalDate end = LocalDate.of(2018, 9, 27);
+        LocalTime endHour = LocalTime.of(23,50,0);
+
+        Auction auction = user.createAuction("ejemplo","descripcion", 20, start, end, endHour);
+
+        user.bidAuction(auction);
+        //el precio no cambia porque soy el mismo dueño, no
+        //puedo ofertar
+        assertEquals(20, (long)auction.getCurrentPrice());
+    }
+
+    @Test
+    public void testBidAuction(){
+        LocalDate start = LocalDate.of(2018,9,23);
+        LocalDate end = LocalDate.of(2018, 9, 27);
+        LocalTime endHour = LocalTime.of(23,50,0);
+
+        Auction auction = user.createAuction("ejemplo","descripcion", 20, start, end, endHour);
+
+        anotherUser.bidAuction(auction);
+        //el precio cambia
+        assertEquals(30, (long)auction.getCurrentPrice());
     }
 
 }

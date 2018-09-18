@@ -74,11 +74,22 @@ public class User {
 	
 	// Methods
 	
-	public void createAuction(String title, String description, Integer price, LocalDate start, LocalDate end, LocalTime endHour){
+	public Auction createAuction(String title, String description, Integer price, LocalDate start, LocalDate end, LocalTime endHour){
 	    //TODO: only for registered users
 		Auction newAuction = new Auction(title,description, price, start, end, endHour);
 
 		newAuction.setOwnerEmail(this.getEmail());
+
+		return newAuction;
 	}
+
+	public void bidAuction(Auction auction){
+	    //TODO only for registered users
+        if(auction.getOwnerEmail() != this.getEmail()){
+            //TODO si soy el propio owner me deberia levantar una excepcion
+            //TODO o al menos una ventana warning en frontend
+            auction.acceptBid();
+        }
+    }
 
 }
