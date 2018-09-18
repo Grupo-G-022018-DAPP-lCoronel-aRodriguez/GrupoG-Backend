@@ -2,6 +2,8 @@
 import model.Validator;
 import org.junit.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
@@ -66,4 +68,55 @@ public class ValidatorTest {
     public void testIsValidPasswordShouldFail30Characters(){
         assertFalse(Validator.isValidPassword("abcdefghijklmnopqrstuvwxyzabcd"));
     }
+
+    // Auction
+
+    @Test
+    public void testIsValidTitle(){
+        assertTrue(Validator.isValidTitle("Titulo Valido"));
+    }
+
+    @Test
+    public void testIsValidTitleShouldFailLessThan10Characters(){
+        assertFalse(Validator.isValidTitle("Titulo"));
+    }
+
+    @Test
+    public void testIsValidDescription(){
+        assertTrue(Validator.isValidDescription("Descripcion Valido"));
+    }
+
+    @Test
+    public void testIsValidDescriptionShouldFailLessThan10Characters(){
+        assertFalse(Validator.isValidDescription("Desc"));
+    }
+
+    @Test
+    public void testIsValidPublicationDate(){
+        LocalDate hoy = LocalDate.now();
+        LocalDate ejemplo = hoy.plusDays(3);
+        assertTrue(Validator.isValidPublicationDate(ejemplo));
+    }
+
+    @Test
+    public void testIsValidPublicationDateShouldFail(){
+        LocalDate hoy = LocalDate.now();
+        assertFalse(Validator.isValidPublicationDate(hoy));
+    }
+
+    @Test
+    public void testIsValidUntilDate(){
+        LocalDate hoy = LocalDate.now();
+        LocalDate ejemplo = hoy.plusDays(2);
+        assertTrue(Validator.isValidUntilDate(hoy,ejemplo));
+    }
+
+    @Test
+    public void testIsValidUntilDateShouldFailLessThanTwoDays(){
+        LocalDate hoy = LocalDate.now();
+        LocalDate ejemplo = hoy.plusDays(1);
+        assertFalse(Validator.isValidUntilDate(hoy,ejemplo));
+    }
+
+
 }
