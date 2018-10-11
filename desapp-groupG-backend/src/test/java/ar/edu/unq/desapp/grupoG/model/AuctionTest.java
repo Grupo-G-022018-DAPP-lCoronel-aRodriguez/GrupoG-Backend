@@ -5,11 +5,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ar.edu.unq.desapp.grupoG.model.Auction;
-import ar.edu.unq.desapp.grupoG.model.AuctionState;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 public class AuctionTest {
 
@@ -54,16 +51,16 @@ public class AuctionTest {
         assertEquals("", auction.getCurrentPrice());
     }
     
-//    public void testAuctionPublicationDate(){
-  //      assertEquals( "", auction.);
-    //}
+    public void testAuctionPublicationDate(){
+        //assertEquals( "", auction.);
+    }
     
     public void testAuctionUntilDate(){
-       // assertEquals("", auction.);
+        //assertEquals("", auction.);
     }
     
     public void testAuctionUntilTime(){
-    //    assertEquals("", auction.);
+        //assertEquals("", auction.);
     }
     
     public void testAuctionState(){

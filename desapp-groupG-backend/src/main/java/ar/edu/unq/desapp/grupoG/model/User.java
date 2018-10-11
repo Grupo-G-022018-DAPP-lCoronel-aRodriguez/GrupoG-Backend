@@ -92,4 +92,12 @@ public class User {
 	    return title + "\n\n" + desc;
     }
 
+	public Boolean getLogged() {
+		return logged;
+	}
+
+	public void setLogged(Boolean logged) {
+		this.logged = logged;
+	}
+
 }
