@@ -4,10 +4,17 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 //@Data
 //@Data configurara los getters y setters por defecto
+@Entity
 public class Auction {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String title;
 	private String description;
 	private String address;
