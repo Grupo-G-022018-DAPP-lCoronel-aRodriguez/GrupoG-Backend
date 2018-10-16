@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @Entity
 public class Auction {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO) private int Id;
 	private String title;
 	private String description;
 	private String address;
@@ -23,7 +23,7 @@ public class Auction {
 	private Integer currentPrice;
 	private LocalDate untilDate;
 	private LocalTime untilTime;
-	private AuctionState auctionState;
+	//private AuctionState auctionState;
 	private String ownerEmail;
 	private String lastBidderName = null;
 	//private List<Integer> previousPrices ; // la lista de precios anteriores
@@ -43,8 +43,21 @@ public class Auction {
 		//this.previousPrices = new ArrayList <Integer>();
 		//this.previousPrices.add(0);
 
-		this.auctionState = new NewState();
+		//this.auctionState = new NewState();
 		
+	}
+	
+	//For testing purposes ONLY
+	//TODO SACAR ESTO DE ACA!
+	public Auction(String title, String description) {
+		this.title = title;
+		this.description = description;
+	}
+	
+	//IDEM
+	public Auction() {
+		this.title = "TOST";
+		this.description = "sarasaaa";
 	}
 
 	public String getTitle() {
@@ -107,14 +120,16 @@ public class Auction {
 	public Integer getInitialPrice() {
 		return initialPrice;
 	}
-
+	
+	/*
 	public AuctionState getAuctionState() {
 		return auctionState;
-	}
-
+	}*/
+	
+	/*
 	public void setAuctionState(AuctionState auctionState) {
 		this.auctionState = auctionState;
-	}
+	}*/
 
 	public String getOwnerEmail() {
 		return ownerEmail;

@@ -63,9 +63,9 @@ public class AuctionTest {
         //assertEquals("", auction.);
     }
     
-    public void testAuctionState(){
-        assertEquals("", auction.getAuctionState());
-    }
+//    public void testAuctionState(){
+//        assertEquals("", auction.getAuctionState());
+//    }
     
     public void testOwnerEmail(){
         assertEquals("", auction.getOwnerEmail());
