@@ -2,8 +2,14 @@ package ar.edu.unq.desapp.grupoG.controllers;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,12 +37,13 @@ public class AuctionController {
 
     @RequestMapping(value="auctions", method = RequestMethod.POST)
     public Auction create(@RequestBody Auction auction){
-        return auctionRepository.saveAndFlush(auction)
+        return auctionRepository.saveAndFlush(auction);
     }
-
+    
+    /*
     @RequestMapping(value="auctions/{id}", method = RequestMethod.GET)
     public Auction get(@PathVariable Long id){
-        return auctionRepository.findOne(id)
+        return auctionRepository.findOne(id);
     }
 
     @RequestMapping(value="auctions/{id}", method = RequestMethod.PUT)
@@ -47,11 +54,11 @@ public class AuctionController {
     }
 
     @RequestMapping(value="auctions/{id}", method = RequestMethod.DELETE)
-        public Auction delete(@PathVariable Long Id){
-             Auction existingAuction = auctionRepository.findOne(id);
-             auctionRepository.delete(existingAuction);
-             return existingAuction;
-             //returns the deleted Auction
-        }
+    public Auction delete(@PathVariable Long id){
+        Auction existingAuction = auctionRepository.findOne(id);
+        auctionRepository.delete(existingAuction);
+        return existingAuction;
+        //returns the deleted Auction
+    }*/
 
 }

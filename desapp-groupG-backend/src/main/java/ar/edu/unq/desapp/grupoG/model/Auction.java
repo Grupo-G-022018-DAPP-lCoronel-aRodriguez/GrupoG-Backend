@@ -26,7 +26,7 @@ public class Auction {
 	private AuctionState auctionState;
 	private String ownerEmail;
 	private String lastBidderName = null;
-	private List<Integer> previousPrices ; // la lista de precios anteriores
+	//private List<Integer> previousPrices ; // la lista de precios anteriores
 	private LocalDate publicationDate;
 
 
@@ -40,7 +40,7 @@ public class Auction {
 		this.setPublicationDate(start);
 		this.untilDate = end;
 		this.untilTime = endHour;
-		this.previousPrices = new ArrayList <Integer>();
+		//this.previousPrices = new ArrayList <Integer>();
 		//this.previousPrices.add(0);
 
 		this.auctionState = new NewState();
@@ -80,7 +80,7 @@ public class Auction {
 	//}
 
 	public void setPreviousPrices(List<Integer> previousPrices) {
-		this.previousPrices = previousPrices;
+		//this.previousPrices = previousPrices;
 	}
 
 
