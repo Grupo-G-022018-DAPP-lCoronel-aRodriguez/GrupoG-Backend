@@ -60,6 +60,12 @@ public class Auction {
 		this.description = "sarasaaa";
 	}
 
+	public Auction(String title, String description, Integer price) {
+		this.title = title;
+		this.description = description;
+		this.initialPrice = price;
+	}
+
 	public String getTitle() {
 		return title;
 	}
