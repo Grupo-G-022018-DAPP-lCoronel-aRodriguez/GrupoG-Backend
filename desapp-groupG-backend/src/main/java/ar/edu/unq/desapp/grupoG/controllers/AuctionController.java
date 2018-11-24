@@ -3,9 +3,11 @@ package ar.edu.unq.desapp.grupoG.controllers;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+//import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Id;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,25 +42,24 @@ public class AuctionController {
         return auctionRepository.saveAndFlush(auction);
     }
     
-    /*
     @RequestMapping(value="auctions/{id}", method = RequestMethod.GET)
-    public Auction get(@PathVariable Long id){
-        return auctionRepository.findOne(id);
+    public Auction get(@PathVariable Id id){
+    	return (auctionRepository.findById(id)).get();
     }
 
     @RequestMapping(value="auctions/{id}", method = RequestMethod.PUT)
-    public Auction update(@PathVariable Long id, @RequestBody Auction auction){
-        Auction existingAuction = auctionRepository.findOne(id);
+    public Auction update(@PathVariable Id id, @RequestBody Auction auction){
+        Auction existingAuction = auctionRepository.findById(id).get();
         BeanUtils.copyProperties(auction, existingAuction);
         return auctionRepository.saveAndFlush(existingAuction);
     }
 
     @RequestMapping(value="auctions/{id}", method = RequestMethod.DELETE)
-    public Auction delete(@PathVariable Long id){
-        Auction existingAuction = auctionRepository.findOne(id);
+    public Auction delete(@PathVariable Id id){
+        Auction existingAuction = auctionRepository.findById(id).get();
         auctionRepository.delete(existingAuction);
         return existingAuction;
         //returns the deleted Auction
-    }*/
+    }
 
 }
