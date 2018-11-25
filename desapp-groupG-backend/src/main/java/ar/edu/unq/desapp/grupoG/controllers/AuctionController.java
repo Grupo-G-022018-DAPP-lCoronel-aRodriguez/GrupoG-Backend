@@ -47,22 +47,22 @@ public class AuctionController {
 //    	return auctionDAO.findById(id);
     	return findAuctionWithId(id);
     }
-/*
-    @RequestMapping(value="auctions/{id}", method = RequestMethod.PUT)
+
+    @RequestMapping(value="update_auction/{id}", method = RequestMethod.PUT)
     public Auction update(@PathVariable Long id, @RequestBody Auction auction){
-        Auction existingAuction = auctionDAO.findById(id);
+        Auction existingAuction =findAuctionWithId(id);
         BeanUtils.copyProperties(auction, existingAuction);
         return auctionRepository.saveAndFlush(existingAuction);
     }
 
-    @RequestMapping(value="auctions/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="delete_auction/{id}", method = RequestMethod.DELETE)
     public Auction delete(@PathVariable Long id){
-        Auction existingAuction = auctionDAO.findById(id);
+        Auction existingAuction = findAuctionWithId(id);
         auctionRepository.delete(existingAuction);
         return existingAuction;
         //returns the deleted Auction
     }
-*/
+
 
     //esto deberia hacerlo otra clase, pense en auctionDAO pero no funciona
 	private Auction findAuctionWithId(Long id) {
