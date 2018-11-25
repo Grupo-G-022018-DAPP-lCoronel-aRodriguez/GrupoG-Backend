@@ -183,4 +183,8 @@ public class Auction {
 		this.publicationDate = publicationDate;
 	}
 
+	public Long getId() {
+		return new Long(this.Id) ;
+	}
+
 }

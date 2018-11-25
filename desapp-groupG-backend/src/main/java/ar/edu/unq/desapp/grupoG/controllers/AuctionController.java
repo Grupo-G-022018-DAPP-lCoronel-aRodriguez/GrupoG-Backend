@@ -3,11 +3,9 @@ package ar.edu.unq.desapp.grupoG.controllers;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-//import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.edu.unq.desapp.grupoG.dao.AuctionDAO;
 import ar.edu.unq.desapp.grupoG.model.Auction;
 import ar.edu.unq.desapp.grupoG.repository.AuctionRepositoryJPA;
 
@@ -24,6 +23,7 @@ public class AuctionController {
 
     @Autowired
     private AuctionRepositoryJPA auctionRepository;
+    private AuctionDAO auctionDAO = new AuctionDAO(auctionRepository);
 	
 	private static final String template = "Hello, %s!";
 
@@ -42,24 +42,39 @@ public class AuctionController {
         return auctionRepository.saveAndFlush(auction);
     }
     
-    @RequestMapping(value="auctions/{id}", method = RequestMethod.GET)
-    public Auction get(@PathVariable Id id){
-    	return (auctionRepository.findById(id)).get();
+    @RequestMapping(value="find_auction/{id}", method = RequestMethod.GET)
+    public Auction get(@PathVariable Long id){
+//    	return auctionDAO.findById(id);
+    	return findAuctionWithId(id);
     }
-
+/*
     @RequestMapping(value="auctions/{id}", method = RequestMethod.PUT)
-    public Auction update(@PathVariable Id id, @RequestBody Auction auction){
-        Auction existingAuction = auctionRepository.findById(id).get();
+    public Auction update(@PathVariable Long id, @RequestBody Auction auction){
+        Auction existingAuction = auctionDAO.findById(id);
         BeanUtils.copyProperties(auction, existingAuction);
         return auctionRepository.saveAndFlush(existingAuction);
     }
 
     @RequestMapping(value="auctions/{id}", method = RequestMethod.DELETE)
-    public Auction delete(@PathVariable Id id){
-        Auction existingAuction = auctionRepository.findById(id).get();
+    public Auction delete(@PathVariable Long id){
+        Auction existingAuction = auctionDAO.findById(id);
         auctionRepository.delete(existingAuction);
         return existingAuction;
         //returns the deleted Auction
     }
+*/
 
+    //esto deberia hacerlo otra clase, pense en auctionDAO pero no funciona
+	private Auction findAuctionWithId(Long id) {
+        Auction auction;
+        Boolean found = false;
+        int counter= 0;
+        List<Auction> list= auctionRepository.findAll();
+        while ((!found)&&(counter < list.size())) {
+        	found = list.get(counter).getId() == id;
+        	counter ++;
+        }
+        auction = list.get(counter-1);
+        return auction;
+	}
 }

@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class HomeController {
 
-    @RequestMapping("")
+    @RequestMapping("/")
     public String home(){
         return "/h2";
     }
