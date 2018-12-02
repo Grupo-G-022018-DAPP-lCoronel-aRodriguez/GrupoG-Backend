@@ -4,17 +4,20 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
-//@Data
-//@Data configurara los getters y setters por defecto
+import com.hellokoding.auth.model.User;
+
 @Entity
+@Table(name = "auction")
 public class Auction {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO) private int Id;
 	private String title;
 	private String description;
 	private String address;
@@ -23,12 +26,13 @@ public class Auction {
 	private Integer currentPrice;
 	private LocalDate untilDate;
 	private LocalTime untilTime;
-	//private AuctionState auctionState;
 	private String ownerEmail;
 	private String lastBidderName = null;
-	//private List<Integer> previousPrices ; // la lista de precios anteriores
 	private LocalDate publicationDate;
 
+	private Long id;
+    private String name;
+    private Set<User> users;
 
 	
 	public Auction(String title, String description, Integer price, LocalDate start, LocalDate end, LocalTime endHour) {
@@ -40,11 +44,6 @@ public class Auction {
 		this.setPublicationDate(start);
 		this.untilDate = end;
 		this.untilTime = endHour;
-		//this.previousPrices = new ArrayList <Integer>();
-		//this.previousPrices.add(0);
-
-		//this.auctionState = new NewState();
-		
 	}
 	
 	//For testing purposes ONLY
@@ -65,6 +64,18 @@ public class Auction {
 		this.description = description;
 		this.initialPrice = price;
 	}
+	
+	//getters and setters
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
 	public String getTitle() {
 		return title;
@@ -94,15 +105,6 @@ public class Auction {
 		this.lastBidderName = lastBidderName;
 	}
 
-//	public ArrayList<Integer> getPreviousPrices() {
-	//	return getPreviousPrices();
-	//}
-
-	public void setPreviousPrices(List<Integer> previousPrices) {
-		//this.previousPrices = previousPrices;
-	}
-
-
 	public String getDescription() {
 		return description;
 	}
@@ -127,16 +129,6 @@ public class Auction {
 		return initialPrice;
 	}
 	
-	/*
-	public AuctionState getAuctionState() {
-		return auctionState;
-	}*/
-	
-	/*
-	public void setAuctionState(AuctionState auctionState) {
-		this.auctionState = auctionState;
-	}*/
-
 	public String getOwnerEmail() {
 		return ownerEmail;
 	}
@@ -164,6 +156,24 @@ public class Auction {
 	public void setInitialPrice(Integer initialPrice) {
 		this.initialPrice = initialPrice;
 	}
+	
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @ManyToMany(mappedBy = "auctions")
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
 
 
 
@@ -183,8 +193,7 @@ public class Auction {
 		this.publicationDate = publicationDate;
 	}
 
-	public Long getId() {
-		return new Long(this.Id) ;
-	}
+	
 
 }
+

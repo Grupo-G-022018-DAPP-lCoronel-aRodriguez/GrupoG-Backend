@@ -13,13 +13,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-
-import com.hellokoding.auth.model.Role;
-
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidBirthException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidEmailException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidNameException;
-import ar.edu.unq.desapp.grupoG.exceptions.InvalidPasswordException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidSurnameException;
 
 @Entity
