@@ -17,6 +17,7 @@ import ar.edu.unq.desapp.grupoG.exceptions.InvalidBirthException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidEmailException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidNameException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidSurnameException;
+import ar.edu.unq.desapp.grupoG.validator.Validator;
 
 @Entity
 @Table(name = "user")

@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoG.model;
+package ar.edu.unq.desapp.grupoG.validator;
 
 import java.time.LocalDate;
 
