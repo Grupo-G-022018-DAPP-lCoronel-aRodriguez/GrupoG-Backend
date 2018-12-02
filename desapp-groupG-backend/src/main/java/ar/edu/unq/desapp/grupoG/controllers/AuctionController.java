@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.edu.unq.desapp.grupoG.dao.AuctionDAO;
 import ar.edu.unq.desapp.grupoG.model.Auction;
 import ar.edu.unq.desapp.grupoG.repository.AuctionRepositoryJPA;
 
@@ -23,7 +22,6 @@ public class AuctionController {
 
     @Autowired
     private AuctionRepositoryJPA auctionRepository;
-    private AuctionDAO auctionDAO = new AuctionDAO(auctionRepository);
 	
 	private static final String template = "Hello, %s!";
 
@@ -44,7 +42,6 @@ public class AuctionController {
     
     @RequestMapping(value="find_auction/{id}", method = RequestMethod.GET)
     public Auction get(@PathVariable Long id){
-//    	return auctionDAO.findById(id);
     	return findAuctionWithId(id);
     }
 
