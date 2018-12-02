@@ -126,7 +126,7 @@ public class User {
         return auctions;
     }
 
-    public void setRoles(Set<Auction> auctions) {
+    public void setAuctions(Set<Auction> auctions) {
         this.auctions = auctions;
     }
 
