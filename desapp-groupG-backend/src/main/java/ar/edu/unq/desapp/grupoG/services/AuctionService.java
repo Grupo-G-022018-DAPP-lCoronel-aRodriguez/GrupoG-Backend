@@ -32,7 +32,7 @@ public class AuctionService {
 	public Auction update(Long id, Auction modifiedAuction){
 		return auctionRepository.findById(id)
 				.map(auction -> {
-					BeanUtils.copyProperties(auction, modifiedAuction);
+					BeanUtils.copyProperties(modifiedAuction, auction);
 					return auctionRepository.saveAndFlush(auction);
 				})
 				.orElseThrow(() ->
