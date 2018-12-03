@@ -13,8 +13,7 @@ import javax.persistence.Id;
 //@Data configurara los getters y setters por defecto
 @Entity
 public class Auction {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO) private int Id;
+	private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
 	private String title;
 	private String description;
 	private String address;
@@ -54,17 +53,14 @@ public class Auction {
 		this.description = description;
 	}
 	
-	//IDEM
-	public Auction() {
-		this.title = "TOST";
-		this.description = "sarasaaa";
-	}
 
-	public Auction(String title, String description, Integer price) {
-		this.title = title;
-		this.description = description;
-		this.initialPrice = price;
-	}
+	public Auction() {}
+
+//	public Auction(String title, String description, Integer price) {
+//		this.title = title;
+//		this.description = description;
+//		this.initialPrice = price;
+//	}
 
 	public String getTitle() {
 		return title;
