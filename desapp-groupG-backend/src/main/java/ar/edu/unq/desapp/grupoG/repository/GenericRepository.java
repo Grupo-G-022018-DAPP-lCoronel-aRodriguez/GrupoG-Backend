@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoG.repository;
 
+import java.util.List;
+
 public interface GenericRepository<T>{
 	 
     T create(T t);
@@ -10,5 +12,5 @@ public interface GenericRepository<T>{
  
     T update(T t);
      
-    Iterable<T> findAll();
+    List<T> findAll();
 }
