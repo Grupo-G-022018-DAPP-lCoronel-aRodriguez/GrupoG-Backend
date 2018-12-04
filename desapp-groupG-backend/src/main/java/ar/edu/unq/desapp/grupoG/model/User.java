@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidBirthException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidEmailException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidNameException;
+import ar.edu.unq.desapp.grupoG.exceptions.InvalidPasswordException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidSurnameException;
 import ar.edu.unq.desapp.grupoG.validator.Validator;
 
@@ -96,8 +97,11 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password) throws InvalidPasswordException {
+    	if(Validator.isValidPassword(password))
+    		{ this.password = password; }
+    	else { throw new InvalidPasswordException(); }
+        
     }
 
 	@NotNull
