@@ -34,7 +34,7 @@ public class Auction {
 	private LocalDate publicationDate;
 	
 	private String name;
-    private Set<User> users;
+    //private Set<User> users;
 
 
 	
@@ -68,6 +68,11 @@ public class Auction {
     public Long getId() {
         return id;
     }
+	
+    public void setId(Long id) {
+        this.id = id;
+    }
+	
 
 	public String getTitle() {
 		return title;
@@ -176,14 +181,15 @@ public class Auction {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "auctions")
+    
+    /*@ManyToMany(mappedBy = "auctions")
     public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }
+    }*/
 
 
 

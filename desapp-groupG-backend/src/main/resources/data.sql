@@ -1,4 +1,2 @@
-INSERT INTO AUCTION
-VALUES (10000 , 'Persistence St. 666', 777, 'For testing purposes', 777, 'Last Bi' ||
- '' ||
-  'dder', 'asd@gmail.com', 'url', '1994-02-25', 'An Auction', '1989-07-09', '23:59:59.99');
+
+VALUES (10000 , 'Titulo', 'Descripcion', 'Persistent St 123', 'https://imgur.com', 50, 200, '1994-02-25', '23:59:59.99', 'owner@gmail.com', 'An Auction', '1989-07-09', 'Auction Name');

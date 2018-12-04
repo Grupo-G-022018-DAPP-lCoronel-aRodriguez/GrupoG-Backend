@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 
 	@Service
 	public class SecurityServiceImpl implements SecurityService{
-	    @Autowired
+	    //@Autowired
 	    private AuthenticationManager authenticationManager;
 
-	    @Autowired
+	    //@Autowired
 	    private UserDetailsService userDetailsService;
 
 	    private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);

@@ -14,11 +14,14 @@ import ar.edu.unq.desapp.grupoG.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
-	@Autowired
+	
+	//@Autowired
     private UserRepository userRepository;
-    @Autowired
+	
+    //@Autowired
     private AuctionRepository auctionRepository;
-    @Autowired
+    
+    //@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
@@ -32,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findByUsername(String username) {
-		  return userRepository.findByUsername(username);
-		  }
+		return userRepository.findByUsername(username);
+	}
 
 }
