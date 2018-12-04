@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
+import ar.edu.unq.desapp.grupoG.exceptions.InvalidPasswordException;
 import ar.edu.unq.desapp.grupoG.model.User;
 import ar.edu.unq.desapp.grupoG.repository.AuctionRepository;
 import ar.edu.unq.desapp.grupoG.repository.UserRepository;
@@ -27,7 +27,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        try {
+			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		} catch (InvalidPasswordException e) {
+			e.printStackTrace();
+		}
         user.setAuctions(new HashSet<>(auctionRepository.findAll()));
         userRepository.save(user);
 
