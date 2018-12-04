@@ -4,14 +4,19 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
-//@Data
-//@Data configurara los getters y setters por defecto
+
+
 @Entity
+@Table(name = "auction")
 public class Auction {
 	private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
 	private String title;
@@ -27,6 +32,9 @@ public class Auction {
 	private String lastBidderName = null;
 	//private List<Integer> previousPrices ; // la lista de precios anteriores
 	private LocalDate publicationDate;
+	
+	private String name;
+    private Set<User> users;
 
 
 	
@@ -46,8 +54,6 @@ public class Auction {
 		
 	}
 	
-	//For testing purposes ONLY
-	//TODO SACAR ESTO DE ACA!
 	public Auction(String title, String description) {
 		this.title = title;
 		this.description = description;
@@ -56,11 +62,12 @@ public class Auction {
 
 	public Auction() {}
 
-//	public Auction(String title, String description, Integer price) {
-//		this.title = title;
-//		this.description = description;
-//		this.initialPrice = price;
-//	}
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
 
 	public String getTitle() {
 		return title;
@@ -160,6 +167,25 @@ public class Auction {
 	public void setInitialPrice(Integer initialPrice) {
 		this.initialPrice = initialPrice;
 	}
+	
+	public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @ManyToMany(mappedBy = "auctions")
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+
 
 
 
