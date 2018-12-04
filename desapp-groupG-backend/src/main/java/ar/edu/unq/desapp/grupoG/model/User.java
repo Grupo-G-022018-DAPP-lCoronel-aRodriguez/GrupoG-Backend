@@ -1,25 +1,60 @@
 package ar.edu.unq.desapp.grupoG.model;
 
 import java.time.LocalDate;
+import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidBirthException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidEmailException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidNameException;
-import ar.edu.unq.desapp.grupoG.exceptions.InvalidPasswordException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidSurnameException;
+import ar.edu.unq.desapp.grupoG.validator.Validator;
 
+@Entity
+@Table(name = "user")
 public class User {
 	@NotNull private String name;
     @NotNull private String surname;
     @NotNull private String email;
-    @NotNull private String password;
+//    @NotNull private String password;
     @NotNull private LocalDate birth;
 	private Boolean logged = false;
-	
+	private Long id;
+	private String username;
+	private String password;
+	private String passwordConfirm;
+	private Set<Auction> auctions;//no lo uso aun
+
 	
 	//Getters, Setters
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 	
 	@NotNull
     public String getName() {
@@ -57,17 +92,13 @@ public class User {
 			{ throw new InvalidEmailException(); }
 	}
 
-	@NotNull
     public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) throws InvalidPasswordException {
-		if (Validator.isValidPassword(password))
-			{ this.password = password; }
-		else
-			{ throw new InvalidPasswordException(); }
-	}
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 	@NotNull
     public LocalDate getBirth() {
@@ -81,6 +112,25 @@ public class User {
 			{ throw new InvalidBirthException(); }
 	}
 	
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "user_auction", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "auction_id"))
+    public Set<Auction> getAuctions() {
+        return auctions;
+    }
+
+    public void setAuctions(Set<Auction> auctions) {
+        this.auctions = auctions;
+    }
+
 	
 	// Methods
 	
@@ -101,3 +151,5 @@ public class User {
 	}
 
 }
+
+

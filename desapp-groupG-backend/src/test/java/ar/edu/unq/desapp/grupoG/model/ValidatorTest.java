@@ -1,7 +1,8 @@
 package ar.edu.unq.desapp.grupoG.model;
 
-import ar.edu.unq.desapp.grupoG.model.Validator;
 import org.junit.Test;
+
+import ar.edu.unq.desapp.grupoG.validator.Validator;
 
 import java.time.LocalDate;
 

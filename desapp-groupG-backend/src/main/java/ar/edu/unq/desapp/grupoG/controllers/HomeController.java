@@ -6,7 +6,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(){
-        return "Home Screen";
+        return "/h2";
     }
 
 }
