@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoG.model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -34,6 +35,7 @@ public class User {
 	private String password;
 	private String passwordConfirm;
 	private Set<Auction> auctions;//no lo uso aun
+	private UserState state;
 
 	
 	//Getters, Setters
@@ -153,6 +155,23 @@ public class User {
 	public void setLogged(Boolean logged) {
 		this.logged = logged;
 	}
+	
+	
+	
+	
+	
+	public Auction createAuction(String title, String description, Integer price, LocalDate start, LocalDate end, LocalTime endHour){
+
+		return this.state.createAuction(title,description, price, start, end, endHour, this.email);
+		
+    }
+
+    public void bidAuction(Auction auction){
+
+    	this.state.bidAuction(auction, this.email);
+    	
+        }
+    
 
 }
 

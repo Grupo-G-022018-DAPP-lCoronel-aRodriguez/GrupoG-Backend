@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
-
+//@Observable
 @Entity
 @Table(name = "auction")
 public class Auction {
@@ -155,6 +155,7 @@ public class Auction {
 
 	private void setCurrentPrice(Integer currentPrice) {
 		this.currentPrice = currentPrice;
+		//notify()
 	}
 
 	public Integer getCurrentPrice() {
@@ -197,10 +198,11 @@ public class Auction {
 
 	// Methods
 
-	void acceptBid() {
+	void acceptBid(String email) {
 		// TODO chequear estado InProgress
 
 		this.setCurrentPrice((int) (getInitialPrice() + (getInitialPrice() * 0.5)));
+		this.setLastBidderName(email);
 	}
 
 	public LocalDate getPublicationDate() {
