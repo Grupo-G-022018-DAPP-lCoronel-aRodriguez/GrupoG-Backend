@@ -26,9 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userRepository.findByUsername(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (Auction auction : user.getAuctions()){
-            grantedAuthorities.add(new SimpleGrantedAuthority(auction.getName()));//???????
-        }
+//        for (Auction auction : user.getAuctions()){
+//            grantedAuthorities.add(new SimpleGrantedAuthority(auction.getName()));//???????
+//        }
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }

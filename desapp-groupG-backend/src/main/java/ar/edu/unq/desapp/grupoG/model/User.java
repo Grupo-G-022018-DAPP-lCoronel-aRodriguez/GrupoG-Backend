@@ -27,13 +27,13 @@ public class User {
 	@NotNull private String name;
     @NotNull private String surname;
     @NotNull private String email;
-//    @NotNull private String password;
+  @NotNull private String password;
     @NotNull private LocalDate birth;
-	private Boolean logged = false;
+	//private Boolean logged = false;
 	private Long id;
 	private String username;
-	private String password;
-	private String passwordConfirm;
+//	private String password;
+//	private String passwordConfirm;
 	private Set<Auction> auctions;//no lo uso aun
 	private UserState state;
 
@@ -118,15 +118,15 @@ public class User {
 			{ throw new InvalidBirthException(); }
 	}
 	
-    @Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-
+//    @Transient
+//    public String getPasswordConfirm() {
+//        return passwordConfirm;
+//    }
+//
+//    public void setPasswordConfirm(String passwordConfirm) {
+//        this.passwordConfirm = passwordConfirm;
+//    }
+//
     @ManyToMany
     @JoinTable(name = "user_auction", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "auction_id"))
     public Set<Auction> getAuctions() {
@@ -148,15 +148,15 @@ public class User {
 	    return title + "\n\n" + desc;
     }
 
-	public Boolean getLogged() {
-		return logged;
-	}
-
-	public void setLogged(Boolean logged) {
-		this.logged = logged;
-	}
-	
-	
+//	public Boolean getLogged() {
+//		return logged;
+//	}
+//
+//	public void setLogged(Boolean logged) {
+//		this.logged = logged;
+//	}
+//	
+//	
 	
 	
 	

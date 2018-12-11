@@ -33,7 +33,7 @@ public class Auction {
 	//private List<Integer> previousPrices ; // la lista de precios anteriores
 	private LocalDate publicationDate;
 	
-	private String name;
+//	private String name;
     //private Set<User> users;
 
 
@@ -174,14 +174,14 @@ public class Auction {
 		this.initialPrice = initialPrice;
 	}
 	
-	public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+//	public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
     
     /*@ManyToMany(mappedBy = "auctions")
     public Set<User> getUsers() {

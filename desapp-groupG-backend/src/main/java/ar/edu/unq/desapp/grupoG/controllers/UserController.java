@@ -1,26 +1,23 @@
 package ar.edu.unq.desapp.grupoG.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unq.desapp.grupoG.model.User;
-import ar.edu.unq.desapp.grupoG.service.SecurityService;
 import ar.edu.unq.desapp.grupoG.service.UserService;
 import ar.edu.unq.desapp.grupoG.validator.UserValidator;
 
 
-@Controller
+@RestController
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private SecurityService securityService;
 
     @Autowired
     private UserValidator userValidator;
@@ -42,7 +39,7 @@ public class UserController {
 
         userService.save(userForm);
 
-        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+//        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
         return "redirect:/welcome";
     }
