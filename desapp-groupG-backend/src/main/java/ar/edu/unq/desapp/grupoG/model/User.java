@@ -146,7 +146,7 @@ public class User{
     }
 	
 	
-	public Auction createAuction(String title, String description, Integer price, LocalDate start, LocalDate end, LocalTime endHour){
+	public Auction createAuction(String title, String description, Float price, LocalDate start, LocalDate end, LocalTime endHour){
 
 		return this.state.createAuction(title,description, price, start, end, endHour, this.email);
 		

@@ -17,7 +17,7 @@ public class AuctionTest {
         LocalDate start = LocalDate.of(2018,9,23);
         LocalDate end = LocalDate.of(2018, 9, 27);
         LocalTime endHour = LocalTime.of(23,50,0);
-        auction = new Auction("ASD","lorem ipsum", 1000,start, end, endHour);
+        auction = new Auction("ASD","lorem ipsum", (float) 1000,start, end, endHour);
     }
 
     @After

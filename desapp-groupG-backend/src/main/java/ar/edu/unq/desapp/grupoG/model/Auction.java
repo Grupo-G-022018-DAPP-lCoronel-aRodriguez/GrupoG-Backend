@@ -25,23 +25,22 @@ public class Auction extends Observable {
 	private String description;
 	private String address;
 	private String photoURL;
-	private Integer initialPrice;
-	private Integer currentPrice;
+	private Float initialPrice;
+	private Float currentPrice;
 	private LocalDate untilDate;
 	private LocalTime untilTime;
 	//private AuctionState auctionState;
 	private String ownerEmail;
 	private String lastBidderName = null;
 	//private List<Integer> previousPrices ; // la lista de precios anteriores
+	//la lista deberia tener ademas del precio el nombre y la hora que se pujo
 	private LocalDate publicationDate;
-	
-//	private String name;
-    //private Set<User> users;
 	private List<AutomaticBid> subscribers;
+	private ArrayList<History> previousBidders;
 
 
 	
-	public Auction(String title, String description, Integer price, LocalDate start, LocalDate end, LocalTime endHour) {
+	public Auction(String title, String description, Float price, LocalDate start, LocalDate end, LocalTime endHour) {
 		this.title = title;
 		this.description = description;
 		this.initialPrice = price;
@@ -50,8 +49,7 @@ public class Auction extends Observable {
 		this.setPublicationDate(start);
 		this.untilDate = end;
 		this.untilTime = endHour;
-		//this.previousPrices = new ArrayList <Integer>();
-		//this.previousPrices.add(0);
+		this.previousBidders = new ArrayList <History>();
 
 		//this.auctionState = new NewState();
 		
@@ -134,7 +132,7 @@ public class Auction extends Observable {
 		this.photoURL = photoURL;
 	}
 
-	public Integer getInitialPrice() {
+	public Float getInitialPrice() {
 		return initialPrice;
 	}
 	
@@ -156,12 +154,12 @@ public class Auction extends Observable {
 		this.ownerEmail = ownerEmail;
 	}
 
-	private void setCurrentPrice(Integer currentPrice) {
+	private void setCurrentPrice(Float currentPrice) {
+		
 		this.currentPrice = currentPrice;
-		notifyObservers(subscribers);
 	}
 
-	public Integer getCurrentPrice() {
+	public Float getCurrentPrice() {
 		return currentPrice;
 	}
 	
@@ -173,7 +171,7 @@ public class Auction extends Observable {
 		this.description = description;
 	}
 
-	public void setInitialPrice(Integer initialPrice) {
+	public void setInitialPrice(Float initialPrice) {
 		this.initialPrice = initialPrice;
 	}
 	
@@ -203,9 +201,13 @@ public class Auction extends Observable {
 
 	void acceptBid(String email) {
 		// TODO chequear estado InProgress
+		this.previousBidders.add(new History(this.lastBidderName,this.currentPrice, this.id));
 
-		this.setCurrentPrice((int) (getInitialPrice() + (getInitialPrice() * 0.5)));
+		this.setCurrentPrice( (float)(getInitialPrice() + (getInitialPrice() * 0.5)));
 		this.setLastBidderName(email);
+		notifyObservers(subscribers);
+		//antes de sobreecribir el precio, guardamos el precio anterior y ultimo usuario anterior en la lista
+
 	}
 
 	public LocalDate getPublicationDate() {

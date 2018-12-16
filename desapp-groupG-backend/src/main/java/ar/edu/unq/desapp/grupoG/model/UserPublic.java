@@ -16,7 +16,7 @@ public class UserPublic extends UserState {
 	}
 
 	@Override
-	public Auction createAuction(String title, String description, Integer price, LocalDate start, LocalDate end,
+	public Auction createAuction(String title, String description, Float price, LocalDate start, LocalDate end,
 			LocalTime endHour, String email) {
 		// TODO Auto-generated method stub
 		// TODO levantar excepcion que no se puede hacer

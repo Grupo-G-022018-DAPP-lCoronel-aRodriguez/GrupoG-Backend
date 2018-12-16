@@ -24,7 +24,7 @@ public class UserRegistered extends UserState {
 }
 
 	@Override
-	public Auction createAuction(String title, String description, Integer price, LocalDate start, LocalDate end,
+	public Auction createAuction(String title, String description, Float price, LocalDate start, LocalDate end,
 			LocalTime endHour, String email) {
 		  Auction newAuction = new Auction(title,description, price, start, end, endHour);
 	        newAuction.setOwnerEmail(email);

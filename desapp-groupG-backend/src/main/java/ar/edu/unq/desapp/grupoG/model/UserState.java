@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 public abstract class UserState {
 	public abstract void bidAuction(Auction auction, @NotNull String email) ;
-	public abstract Auction createAuction(String title, String description, Integer price, LocalDate start, LocalDate end,
+	public abstract Auction createAuction(String title, String description, Float price, LocalDate start, LocalDate end,
 			LocalTime endHour, String email) ;
 
 }
