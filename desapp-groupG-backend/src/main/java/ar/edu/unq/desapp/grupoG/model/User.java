@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidBirthException;
 import ar.edu.unq.desapp.grupoG.exceptions.InvalidEmailException;
@@ -23,19 +22,17 @@ import ar.edu.unq.desapp.grupoG.validator.Validator;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User{
 	@NotNull private String name;
     @NotNull private String surname;
     @NotNull private String email;
   @NotNull private String password;
     @NotNull private LocalDate birth;
-	//private Boolean logged = false;
 	private Long id;
 	private String username;
-//	private String password;
-//	private String passwordConfirm;
 	private Set<Auction> auctions;//no lo uso aun
 	private UserState state;
+	private AutomaticBid automatic;
 
 	
 	//Getters, Setters
@@ -147,17 +144,6 @@ public class User {
 
 	    return title + "\n\n" + desc;
     }
-
-//	public Boolean getLogged() {
-//		return logged;
-//	}
-//
-//	public void setLogged(Boolean logged) {
-//		this.logged = logged;
-//	}
-//	
-//	
-	
 	
 	
 	public Auction createAuction(String title, String description, Integer price, LocalDate start, LocalDate end, LocalTime endHour){
@@ -172,7 +158,12 @@ public class User {
     	
         }
     
+    public void bidAutomaticaly(Auction auction, Float aPrice) {
+    	if (auction.getLastBidderName() == null) {
+    		//si soy el primero en ofertar 
+    		this.automatic = new AutomaticBid(this,auction,aPrice);
+    	}
+    }
+    
 
 }
-
-

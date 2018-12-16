@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -17,7 +18,8 @@ import javax.persistence.Table;
 //@Observable
 @Entity
 @Table(name = "auction")
-public class Auction {
+
+public class Auction extends Observable {
 	private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
 	private String title;
 	private String description;
@@ -35,6 +37,7 @@ public class Auction {
 	
 //	private String name;
     //private Set<User> users;
+	private List<AutomaticBid> subscribers;
 
 
 	
@@ -155,7 +158,7 @@ public class Auction {
 
 	private void setCurrentPrice(Integer currentPrice) {
 		this.currentPrice = currentPrice;
-		//notify()
+		notifyObservers(subscribers);
 	}
 
 	public Integer getCurrentPrice() {
