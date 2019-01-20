@@ -16,4 +16,17 @@ public class History {
 		this.auctionId = auction;
 	}
 
+	public void print(){
+		System.out.print("\n");
+		System.out.print(this.userEmail);
+		System.out.print("\n");
+		System.out.print(this.price);
+		System.out.print("\n");
+		System.out.print(this.date);
+		System.out.print("\n");
+		System.out.print(this.auctionId);
+		System.out.print("\n");
+		System.out.print("\n");
+	}
+
 }
