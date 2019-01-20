@@ -2,6 +2,8 @@ package ar.edu.unq.desapp.grupoG.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -22,11 +24,11 @@ import ar.edu.unq.desapp.grupoG.validator.Validator;
 
 @Entity
 @Table(name = "user")
-public class User{
+public class User implements Observer {
 	@NotNull private String name;
     @NotNull private String surname;
     @NotNull private String email;
-  @NotNull private String password;
+    @NotNull private String password;
     @NotNull private LocalDate birth;
 	private Long id;
 	private String username;
@@ -114,8 +116,12 @@ public class User{
 		else
 			{ throw new InvalidBirthException(); }
 	}
-	
-//    @Transient
+
+	public void setState(UserRegistered state) {
+		this.state = state;
+	}
+
+	//    @Transient
 //    public String getPasswordConfirm() {
 //        return passwordConfirm;
 //    }
@@ -164,6 +170,12 @@ public class User{
     		this.automatic = new AutomaticBid(this,auction,aPrice);
     	}
     }
-    
+
+
+	@Override
+	public void update(Observable auction, Object arg) {
+			this.state.bidAuction((Auction) auction, this.email);
+	}
+
 
 }

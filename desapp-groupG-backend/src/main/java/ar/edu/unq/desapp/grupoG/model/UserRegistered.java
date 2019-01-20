@@ -15,7 +15,7 @@ public class UserRegistered extends UserState {
 		 if(auction.getOwnerEmail() != email){
 	            //TODO si soy el propio owner me deberia levantar una excepcion
 	            //TODO o al menos una ventana warning en frontend
-			 	if (auction.getLastBidderName() == email)
+			 	if (auction.getLastBidderName() != email)
 			 		//get last bidder email
 			 		auction.acceptBid(email);
 	            

@@ -13,8 +13,9 @@ public class AutomaticBid implements Observer {
 		this.anUser=usr;
 		this.untilPrice = maximun;
 		this.anAuction.addObserver(this);
+		//this.anAuction.addSubscriber(this);
 	}
-	
+
 
 	@Override
 	public void update(Observable o, Object arg) {

@@ -29,13 +29,12 @@ public class Auction extends Observable {
 	private Float currentPrice;
 	private LocalDate untilDate;
 	private LocalTime untilTime;
-	//private AuctionState auctionState;
+	private AuctionState auctionState;
 	private String ownerEmail;
 	private String lastBidderName = null;
 	//private List<Integer> previousPrices ; // la lista de precios anteriores
 	//la lista deberia tener ademas del precio el nombre y la hora que se pujo
 	private LocalDate publicationDate;
-	private List<AutomaticBid> subscribers;
 	private ArrayList<History> previousBidders;
 
 
@@ -51,7 +50,7 @@ public class Auction extends Observable {
 		this.untilTime = endHour;
 		this.previousBidders = new ArrayList <History>();
 
-		//this.auctionState = new NewState();
+		this.auctionState = new NewState();
 		
 	}
 	
@@ -111,6 +110,9 @@ public class Auction extends Observable {
 		//this.previousPrices = previousPrices;
 	}
 
+	public List<History> getPreviousBidders(){
+		return this.previousBidders;
+	}
 
 	public String getDescription() {
 		return description;
@@ -136,15 +138,15 @@ public class Auction extends Observable {
 		return initialPrice;
 	}
 	
-	/*
+
 	public AuctionState getAuctionState() {
 		return auctionState;
-	}*/
+	}
 	
-	/*
+
 	public void setAuctionState(AuctionState auctionState) {
 		this.auctionState = auctionState;
-	}*/
+	}
 
 	public String getOwnerEmail() {
 		return ownerEmail;
@@ -203,9 +205,10 @@ public class Auction extends Observable {
 		// TODO chequear estado InProgress
 		this.previousBidders.add(new History(this.lastBidderName,this.currentPrice, this.id));
 
-		this.setCurrentPrice( (float)(getInitialPrice() + (getInitialPrice() * 0.5)));
+		this.setCurrentPrice( (float)(getCurrentPrice() + (getCurrentPrice() * 0.5)));
 		this.setLastBidderName(email);
-		notifyObservers(subscribers);
+		this.setChanged();
+		notifyObservers();
 		//antes de sobreecribir el precio, guardamos el precio anterior y ultimo usuario anterior en la lista
 
 	}
@@ -216,6 +219,10 @@ public class Auction extends Observable {
 
 	public void setPublicationDate(LocalDate publicationDate) {
 		this.publicationDate = publicationDate;
+	}
+
+	public void printHistory(){
+		this.previousBidders.forEach(History::print);
 	}
 
 }
