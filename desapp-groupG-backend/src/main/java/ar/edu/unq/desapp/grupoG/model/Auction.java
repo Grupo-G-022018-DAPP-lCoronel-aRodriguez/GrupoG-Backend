@@ -5,22 +5,17 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 //@Observable
-@Entity
+@Entity(name="Auction")
 @Table(name = "auction")
 
 public class Auction extends Observable {
 	private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
+
 	private String title;
 	private String description;
 	private String address;
@@ -35,8 +30,9 @@ public class Auction extends Observable {
 	//private List<Integer> previousPrices ; // la lista de precios anteriores
 	//la lista deberia tener ademas del precio el nombre y la hora que se pujo
 	private LocalDate publicationDate;
-	private ArrayList<History> previousBidders;
 
+	@OneToMany(mappedBy = "auction", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<History> historial = new ArrayList<>();
 
 	
 	public Auction(String title, String description, Float price, LocalDate start, LocalDate end, LocalTime endHour) {
@@ -48,7 +44,7 @@ public class Auction extends Observable {
 		this.setPublicationDate(start);
 		this.untilDate = end;
 		this.untilTime = endHour;
-		this.previousBidders = new ArrayList <History>();
+		this.historial = new ArrayList <History>();
 
 		this.auctionState = new NewState();
 		
@@ -62,9 +58,8 @@ public class Auction extends Observable {
 
 	public Auction() {}
 
-	
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
+
     public Long getId() {
         return id;
     }
@@ -110,8 +105,8 @@ public class Auction extends Observable {
 		//this.previousPrices = previousPrices;
 	}
 
-	public List<History> getPreviousBidders(){
-		return this.previousBidders;
+	public List<History> getHistorial(){
+		return this.historial;
 	}
 
 	public String getDescription() {
@@ -201,10 +196,15 @@ public class Auction extends Observable {
 
 	// Methods
 
+    public void addHistory(History history) {
+        this.historial.add(history);
+        history.setAuction(this);
+    }
+
 	void acceptBid(String email) {
 		// TODO chequear estado InProgress
-		this.previousBidders.add(new History(this.lastBidderName,this.currentPrice, this.id));
-
+		//this.historial.add(new History(this.lastBidderName,this.currentPrice, this));
+        this.addHistory(new History(this.lastBidderName,this.currentPrice, this));
 		this.setCurrentPrice( (float)(getCurrentPrice() + (getCurrentPrice() * 0.5)));
 		this.setLastBidderName(email);
 		this.setChanged();
@@ -222,7 +222,7 @@ public class Auction extends Observable {
 	}
 
 	public void printHistory(){
-		this.previousBidders.forEach(History::print);
+		this.historial.forEach(History::print);
 	}
 
 }
