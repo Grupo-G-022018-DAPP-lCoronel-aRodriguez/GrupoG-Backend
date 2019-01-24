@@ -28,15 +28,18 @@ public class UserTest {
 
         regUser = new RegisteredUser();
         regUser.setEmail("registrado@hotmail.com");
+        regUser.setState(new UserRegistered());
 
         anotherUser = new RegisteredUser();
         anotherUser.setEmail("otro@gmail.com");
+        anotherUser.setState(new UserRegistered());
     }
 
     @After
     public void tearDown() {
         user = null;
         anotherUser = null;
+        regUser = null;
     }
 
     @Test

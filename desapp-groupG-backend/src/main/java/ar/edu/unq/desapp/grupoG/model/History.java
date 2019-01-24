@@ -40,13 +40,13 @@ public class History {
 
 	public void print(){
 		System.out.print("\n");
-		System.out.print(this.userEmail);
+		System.out.print("User:\t\t" + this.userEmail);
 		System.out.print("\n");
-		System.out.print(this.price);
+		System.out.print("Price\t\t" + this.price);
 		System.out.print("\n");
-		System.out.print(this.date);
+		System.out.print("Date:\t\t" + this.date);
 		System.out.print("\n");
-		System.out.print(this.auction.getId());
+		System.out.print("Auction ID:\t\t" + this.auction.getId());
 		System.out.print("\n");
 		System.out.print("\n");
 	}

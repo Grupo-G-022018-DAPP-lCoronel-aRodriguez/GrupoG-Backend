@@ -32,7 +32,7 @@ public class User implements Observer {
     @NotNull private LocalDate birth;
 	private Long id;
 	private String username;
-	private Set<Auction> auctions;//no lo uso aun
+	private Set<Auction> auctions;
 	private UserState state;
 	private AutomaticBid automatic;
 
@@ -121,15 +121,6 @@ public class User implements Observer {
 		this.state = state;
 	}
 
-	//    @Transient
-//    public String getPasswordConfirm() {
-//        return passwordConfirm;
-//    }
-//
-//    public void setPasswordConfirm(String passwordConfirm) {
-//        this.passwordConfirm = passwordConfirm;
-//    }
-//
     @ManyToMany
     @JoinTable(name = "user_auction", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "auction_id"))
     public Set<Auction> getAuctions() {
@@ -158,13 +149,13 @@ public class User implements Observer {
 		
     }
 
-    public void bidAuction(Auction auction){
+    public void bidAuction(Auction auction) {
 
     	this.state.bidAuction(auction, this.email);
     	
-        }
+    }
     
-    public void bidAutomaticaly(Auction auction, Float aPrice) {
+    public void bidAutomatically(Auction auction, Float aPrice) {
     	if (auction.getLastBidderName() == null) {
     		//si soy el primero en ofertar 
     		this.automatic = new AutomaticBid(this,auction,aPrice);
