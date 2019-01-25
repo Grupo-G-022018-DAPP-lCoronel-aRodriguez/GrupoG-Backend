@@ -11,13 +11,18 @@ import java.time.LocalTime;
 public class AuctionTest {
 
     private Auction auction;
+    private LocalDate publicationDate = LocalDate.now();
+    private LocalDate start = LocalDate.of(2018,9,23);
+    private LocalDate end = LocalDate.of(2018, 9, 27);
+    private LocalTime endHour = LocalTime.of(23,50,0);
 
     @Before
     public void setUp(){
-        LocalDate start = LocalDate.of(2018,9,23);
-        LocalDate end = LocalDate.of(2018, 9, 27);
-        LocalTime endHour = LocalTime.of(23,50,0);
-        auction = new Auction("ASD","lorem ipsum", (float) 1000,start, end, endHour);
+        auction = new Auction("ASD","lorem ipsum", (float) 1000, start, end, endHour);
+        auction.setOwnerEmail("owner@email.com");
+        auction.setLastBidderName("thelastbidder");
+        auction.setAddress("theaddress");
+        auction.setPhotoURL("http://photo.url.com/1");
     }
 
     @After
@@ -29,54 +34,60 @@ public class AuctionTest {
     public void testAuctionTitle(){
         assertEquals("ASD", auction.getTitle());
     }
-    
-    
+
+    @Test
     public void testAuctionDescription(){
         assertEquals("lorem ipsum", auction.getDescription());
     }
-    
+
+    @Test
     public void testAuctionAddress(){
-        assertEquals("", auction.getAddress());
+        assertEquals("theaddress", auction.getAddress());
     }
-    
+
+    @Test
     public void testAuctionPhotoURL(){
-        assertEquals("", auction.getPhotoURL());
+        assertEquals("http://photo.url.com/1", auction.getPhotoURL());
     }
-    
+
+    @Test
     public void testAuctionInitialPrice(){
-        assertEquals("1000", auction.getInitialPrice());
+        assertEquals(1000, auction.getInitialPrice(),0);
     }
-    
+
+    @Test
     public void testAuctionCurrentPrice(){
-        assertEquals("", auction.getCurrentPrice());
+        assertEquals((float)1000, auction.getCurrentPrice(), 0);
     }
-    
+
+    @Test
     public void testAuctionPublicationDate(){
-        //assertEquals( "", auction.);
+        assertEquals( publicationDate, auction.getPublicationDate());
     }
-    
-    public void testAuctionUntilDate(){
-        //assertEquals("", auction.);
-    }
-    
-    public void testAuctionUntilTime(){
-        //assertEquals("", auction.);
-    }
-    
-//    public void testAuctionState(){
-//        assertEquals("", auction.getAuctionState());
-//    }
-    
+
+    @Test
     public void testOwnerEmail(){
-        assertEquals("", auction.getOwnerEmail());
+        assertEquals("owner@email.com", auction.getOwnerEmail());
     }
-    
+
+    @Test
     public void testAuctionLastBidderName(){
-        //assertEquals("", auction.);
+        assertEquals("thelastbidder", auction.getLastBidderName());
+    }
+
+    @Test
+    public void testAuctionUntilDate(){
+        assertEquals(end, auction.getUntilDate());
+    }
+
+    @Test
+    public void testAuctionUntilTime(){
+        assertEquals(endHour, auction.getUntilTime());
     }
     
-    public void testAuctionPreviousPrices(){
-        //assertEquals("", auction.);
+    /*
+    public void testAuctionState(){
+    assertEquals("", auction.getAuctionState());
     }
-        
+    */
 }

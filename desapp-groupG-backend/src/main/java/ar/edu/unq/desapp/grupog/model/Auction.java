@@ -27,8 +27,6 @@ public class Auction extends Observable {
 	private AuctionState auctionState;
 	private String ownerEmail;
 	private String lastBidderName = null;
-	//private List<Integer> previousPrices ; // la lista de precios anteriores
-	//la lista deberia tener ademas del precio el nombre y la hora que se pujo
 	private LocalDate publicationDate;
 
 	@OneToMany(mappedBy = "auction", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -45,6 +43,8 @@ public class Auction extends Observable {
 		this.untilDate = end;
 		this.untilTime = endHour;
 		this.historial = new ArrayList <History>();
+
+		this.publicationDate = LocalDate.now();
 
 		this.auctionState = new NewState();
 		
@@ -97,14 +97,6 @@ public class Auction extends Observable {
 		this.lastBidderName = lastBidderName;
 	}
 
-//	public ArrayList<Integer> getPreviousPrices() {
-	//	return getPreviousPrices();
-	//}
-
-	public void setPreviousPrices(List<Integer> previousPrices) {
-		//this.previousPrices = previousPrices;
-	}
-
 	public List<History> getHistorial(){
 		return this.historial;
 	}
@@ -137,7 +129,6 @@ public class Auction extends Observable {
 	public AuctionState getAuctionState() {
 		return auctionState;
 	}
-	
 
 	public void setAuctionState(AuctionState auctionState) {
 		this.auctionState = auctionState;
@@ -152,7 +143,6 @@ public class Auction extends Observable {
 	}
 
 	private void setCurrentPrice(Float currentPrice) {
-		
 		this.currentPrice = currentPrice;
 	}
 
@@ -172,27 +162,25 @@ public class Auction extends Observable {
 		this.initialPrice = initialPrice;
 	}
 	
-//	public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
+/*
+	public String getName() {
+	return name;
+	}
+
+	public void setName(String name) {
+	this.name = name;
+	}
+
     
-    /*@ManyToMany(mappedBy = "auctions")
+    @ManyToMany(mappedBy = "auctions")
     public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }*/
-
-
-
-
+    }
+*/
 
 	// Methods
 
@@ -210,7 +198,6 @@ public class Auction extends Observable {
 		this.setChanged();
 		notifyObservers();
 		//antes de sobreecribir el precio, guardamos el precio anterior y ultimo usuario anterior en la lista
-
 	}
 
 	public LocalDate getPublicationDate() {

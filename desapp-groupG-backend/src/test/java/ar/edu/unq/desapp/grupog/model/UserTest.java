@@ -121,11 +121,11 @@ public class UserTest {
         LocalTime endHour = LocalTime.of(23,50,0);
 
         Auction auction = regUser.createAuction("ejemplo","descripcion", (float)20, start, end, endHour);
+        float initialPrice = auction.getCurrentPrice();
 
         regUser.bidAuction(auction);
-        //el precio no cambia porque soy el mismo dueño, no
-        //puedo ofertar
-       // assertEquals((float)20, auction.getCurrentPrice());
+        //price is the same
+        assertEquals(initialPrice, auction.getCurrentPrice(), 0);
     }
 
     @Test
@@ -135,10 +135,11 @@ public class UserTest {
         LocalTime endHour = LocalTime.of(23,50,0);
 
         Auction auction = regUser.createAuction("ejemplo","descripcion", (float)20, start, end, endHour);
+        float initialPrice = auction.getCurrentPrice();
 
         anotherUser.bidAuction(auction);
-        //el precio cambia
-        //assertEquals(30, (long)auction.getCurrentPrice());
+        //price changes
+        assertTrue(auction.getCurrentPrice() > initialPrice);
     }
 
 }

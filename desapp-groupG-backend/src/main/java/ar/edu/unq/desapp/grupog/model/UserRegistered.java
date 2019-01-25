@@ -2,6 +2,7 @@ package ar.edu.unq.desapp.grupog.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
@@ -11,11 +12,10 @@ public class UserRegistered extends UserState {
 
 	@Override
 	public void bidAuction(Auction auction, @NotNull String email) {
-		// TODO Auto-generated method stub
 		 if(auction.getOwnerEmail() != email){
 	            //TODO si soy el propio owner me deberia levantar una excepcion
 	            //TODO o al menos una ventana warning en frontend
-			 	if (auction.getLastBidderName() != email)
+			 	if (!Objects.equals(auction.getLastBidderName(), email))
 			 		//get last bidder email
 			 		auction.acceptBid(email);
 	            
@@ -33,7 +33,7 @@ public class UserRegistered extends UserState {
 
 	//se deberia hacer automatico, como??
 	public void bidAuctionAutomaticaly(Auction auction, @NotNull String email, Float maxValue) {
-		 if((auction.getLastBidderName() != email) && (auction.getCurrentPrice()< maxValue)){
+		 if((!Objects.equals(auction.getLastBidderName(), email)) && (auction.getCurrentPrice()< maxValue)){
 				 auction.acceptBid(email);
 		 }
 	            
