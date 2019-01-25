@@ -75,9 +75,9 @@ public class AutomaticBidTest {
         float currentPrice = auction.getCurrentPrice();
         user.bidAuction(auction);
         //automatic bid
-        assert (currentPrice < auction.getCurrentPrice());
+        assert(currentPrice < auction.getCurrentPrice());
         //System.out.print(auction.getCurrentPrice());
-        auction.printHistory();
+        //auction.printHistory();
         //el precio cambio
     }
 

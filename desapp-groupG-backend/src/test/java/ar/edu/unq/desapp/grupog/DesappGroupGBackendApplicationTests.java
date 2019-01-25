@@ -21,13 +21,13 @@ public class DesappGroupGBackendApplicationTests {
 	@Test
 	public void auctionsTest() {
 		String body = this.restTemplate.getForObject("/auctions", String.class);
-		assert (body.equals("[]"));
+		assert("[]".equals(body));
 	}
 
 	@Test
 	public void usersTest(){
 		String body = this.restTemplate.getForObject("/users", String.class);
-		assert (body.equals("[]"));
+		assert("[]".equals(body));
 	}
 
 }
