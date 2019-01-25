@@ -35,9 +35,7 @@ public class AuctionService {
 					BeanUtils.copyProperties(modifiedAuction, auction);
 					return auctionRepository.saveAndFlush(auction);
 				})
-				.orElseThrow(() ->
-					new InvalidIdException()
-				);
+				.orElseThrow(InvalidIdException::new);
 	}
 
 	public Auction delete(Long id) {
@@ -46,9 +44,7 @@ public class AuctionService {
 					auctionRepository.delete(auction);
 					return auction;
 				})
-				.orElseThrow(() ->
-					new InvalidIdException()
-				);
+				.orElseThrow(InvalidIdException::new);
 	}
 
 }

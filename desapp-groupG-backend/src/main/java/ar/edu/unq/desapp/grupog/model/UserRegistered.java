@@ -12,7 +12,7 @@ public class UserRegistered extends UserState {
 
 	@Override
 	public void bidAuction(Auction auction, @NotNull String email) {
-		 if(auction.getOwnerEmail() != email){
+		 if(!Objects.equals(auction.getOwnerEmail(), email)){
 	            //TODO si soy el propio owner me deberia levantar una excepcion
 	            //TODO o al menos una ventana warning en frontend
 			 	if (!Objects.equals(auction.getLastBidderName(), email))

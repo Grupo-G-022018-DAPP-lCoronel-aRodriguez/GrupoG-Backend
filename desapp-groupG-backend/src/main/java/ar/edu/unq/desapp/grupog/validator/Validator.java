@@ -15,7 +15,6 @@ public class Validator {
     }
 
     public static boolean isValidEmail(String email) {
-        //TODO better validation (e.g .com.ar)
         return email.contains("@") && email.endsWith(".com");
     }
 
@@ -25,10 +24,9 @@ public class Validator {
     }
 
     public static boolean isValidDate(LocalDate birth) {
-        //return birth.after(Date(1,1,1990);
-        //TODO validar la fecha, tiene que ser antes de hoy y despues de 1900
         //TODO validar formato DD/MM/YYYY, validar +18
-        return true;
+        return (birth.isAfter(LocalDate.of(1900,1,1)) &&
+                birth.isBefore(LocalDate.now()));
     }
 
     //Auction validations

@@ -2,7 +2,7 @@ package ar.edu.unq.desapp.grupog.model;
 
 import java.io.Serializable;
 
-public abstract class AuctionState implements Serializable {
+abstract class AuctionState implements Serializable {
 
 	/**
 	 * 

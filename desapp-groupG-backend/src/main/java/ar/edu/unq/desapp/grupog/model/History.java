@@ -20,7 +20,7 @@ public class History {
 	private LocalDate date;
 
 	
-	public History (String email, Float price, Auction auction) {
+	History(String email, Float price, Auction auction) {
 		this.userEmail=email;
 		this.price=price;
 		this.date = LocalDate.now();
@@ -38,7 +38,7 @@ public class History {
         return id != null && id.equals(((History) o).id);
     }
 
-	public void print(){
+	void print(){
 		System.out.print("\n");
 		System.out.print("User:\t\t" + this.userEmail);
 		System.out.print("\n");

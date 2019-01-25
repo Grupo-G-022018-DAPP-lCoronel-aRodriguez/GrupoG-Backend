@@ -8,12 +8,11 @@ public class AutomaticBid implements Observer {
 	private Auction anAuction;
 	private Float untilPrice;
 	
-	 AutomaticBid(User usr, Auction atn, Float maximun) {
+	 AutomaticBid(User usr, Auction atn, Float maximum) {
 		this.anAuction = atn;
 		this.anUser=usr;
-		this.untilPrice = maximun;
+		this.untilPrice = maximum;
 		this.anAuction.addObserver(this);
-		//this.anAuction.addSubscriber(this);
 	}
 
 

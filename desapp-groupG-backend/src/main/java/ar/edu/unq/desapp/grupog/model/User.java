@@ -58,47 +58,44 @@ public class User implements Observer {
     }
 
 	
-	@NotNull
-    public String getName() {
+	@NotNull String getName() {
 		return name;
 	}
 	
-	public void setName(String name) throws InvalidNameException {
+	void setName(String name) throws InvalidNameException {
 		if (Validator.isValidName(name))
 			{ this.name = name; }
 		else
 			{ throw new InvalidNameException(); }
 	}
 
-	@NotNull
-    public String getSurname() {
+	@NotNull String getSurname() {
 		return surname;
 	}
 	
-	public void setSurname(String surname) throws InvalidSurnameException {
+	void setSurname(String surname) throws InvalidSurnameException {
 		if (Validator.isValidSurname(surname))
 			{ this.surname = surname; }
 		else
 			{ throw new InvalidSurnameException(); }
 	}
 
-	@NotNull
-    public String getEmail() {
+	@NotNull String getEmail() {
 		return email;
 	}
 	
-	public void setEmail(String email) throws InvalidEmailException {
+	void setEmail(String email) throws InvalidEmailException {
 		if (Validator.isValidEmail(email))
 			{ this.email = email; }
 		else
 			{ throw new InvalidEmailException(); }
 	}
 
-    public String getPassword() {
+    String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) throws InvalidPasswordException {
+    void setPassword(String password) throws InvalidPasswordException {
     	if(Validator.isValidPassword(password))
     		{ this.password = password; }
     	else { throw new InvalidPasswordException(); }
@@ -117,7 +114,7 @@ public class User implements Observer {
 			{ throw new InvalidBirthException(); }
 	}
 
-	public void setState(UserRegistered state) {
+	void setState(UserRegistered state) {
 		this.state = state;
 	}
 
@@ -143,13 +140,13 @@ public class User implements Observer {
     }
 	
 	
-	public Auction createAuction(String title, String description, Float price, LocalDate start, LocalDate end, LocalTime endHour){
+	Auction createAuction(String title, String description, Float price, LocalDate start, LocalDate end, LocalTime endHour){
 
 		return this.state.createAuction(title,description, price, start, end, endHour, this.email);
 		
     }
 
-    public void bidAuction(Auction auction) {
+    void bidAuction(Auction auction) {
 
     	this.state.bidAuction(auction, this.email);
     	

@@ -35,9 +35,7 @@ public class UserService {
 					BeanUtils.copyProperties(modifiedUser, user);
 					return userRepository.saveAndFlush(user);
 				})
-				.orElseThrow(() ->
-					new InvalidIdException()
-				);
+				.orElseThrow(InvalidIdException::new);
 	}
 
 	public User delete(Long id) {
@@ -46,9 +44,7 @@ public class UserService {
 					userRepository.delete(user);
 					return user;
 				})
-				.orElseThrow(() ->
-					new InvalidIdException()
-				);
+				.orElseThrow(InvalidIdException::new);
 	}
 
 }

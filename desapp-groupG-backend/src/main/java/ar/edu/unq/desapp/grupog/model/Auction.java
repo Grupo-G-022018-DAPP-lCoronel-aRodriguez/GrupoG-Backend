@@ -37,28 +37,24 @@ public class Auction extends Observable {
 		this.title = title;
 		this.description = description;
 		this.initialPrice = price;
-		this.currentPrice = price; // comienza siendo igual que el valor inicial
+		this.currentPrice = price;
 
 		this.setPublicationDate(start);
 		this.untilDate = end;
 		this.untilTime = endHour;
-		this.historial = new ArrayList <History>();
+		this.historial = new ArrayList<>();
 
 		this.publicationDate = LocalDate.now();
 
 		this.auctionState = new NewState();
-		
 	}
 	
 	public Auction(String title, String description) {
 		this.title = title;
 		this.description = description;
 	}
-	
 
 	public Auction() {}
-
-
 
     public Long getId() {
         return id;
@@ -67,61 +63,48 @@ public class Auction extends Observable {
     public void setId(Long id) {
         this.id = id;
     }
-	
 
-	public String getTitle() {
+	String getTitle() {
 		return title;
 	}
 	
-	public LocalDate getUntilDate() {
+	LocalDate getUntilDate() {
 		return untilDate;
 	}
 
-	public void setUntilDate(LocalDate untilDate) {
-		this.untilDate = untilDate;
-	}
-
-	public LocalTime getUntilTime() {
+	LocalTime getUntilTime() {
 		return untilTime;
 	}
 
-	public void setUntilTime(LocalTime untilTime) {
-		this.untilTime = untilTime;
-	}
-
-	public String getLastBidderName() {
+	String getLastBidderName() {
 		return lastBidderName;
 	}
 
-	public void setLastBidderName(String lastBidderName) {
+	void setLastBidderName(String lastBidderName) {
 		this.lastBidderName = lastBidderName;
 	}
 
-	public List<History> getHistorial(){
-		return this.historial;
-	}
-
-	public String getDescription() {
+	String getDescription() {
 		return description;
 	}
 
-	public String getAddress() {
+	String getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	void setAddress(String address) {
 		this.address = address;
 	}
 
-	public String getPhotoURL() {
+	String getPhotoURL() {
 		return photoURL;
 	}
 
-	public void setPhotoURL(String photoURL) {
+	void setPhotoURL(String photoURL) {
 		this.photoURL = photoURL;
 	}
 
-	public Float getInitialPrice() {
+	Float getInitialPrice() {
 		return initialPrice;
 	}
 	
@@ -134,11 +117,11 @@ public class Auction extends Observable {
 		this.auctionState = auctionState;
 	}
 
-	public String getOwnerEmail() {
+	String getOwnerEmail() {
 		return ownerEmail;
 	}
 
-	public void setOwnerEmail(String ownerEmail) {
+	void setOwnerEmail(String ownerEmail) {
 		this.ownerEmail = ownerEmail;
 	}
 
@@ -146,23 +129,11 @@ public class Auction extends Observable {
 		this.currentPrice = currentPrice;
 	}
 
-	public Float getCurrentPrice() {
+	Float getCurrentPrice() {
 		return currentPrice;
 	}
-	
-	public void setTitle(String title) {
-		this.title = title;
-	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setInitialPrice(Float initialPrice) {
-		this.initialPrice = initialPrice;
-	}
-	
-/*
+	/*
 	public String getName() {
 	return name;
 	}
@@ -184,12 +155,12 @@ public class Auction extends Observable {
 
 	// Methods
 
-    public void addHistory(History history) {
+    private void addHistory(History history) {
         this.historial.add(history);
         history.setAuction(this);
     }
 
-	public void acceptBid(String email) {
+	void acceptBid(String email) {
 		// TODO chequear estado InProgress
 		//this.historial.add(new History(this.lastBidderName,this.currentPrice, this));
         this.addHistory(new History(this.lastBidderName,this.currentPrice, this));
@@ -200,15 +171,15 @@ public class Auction extends Observable {
 		//antes de sobreecribir el precio, guardamos el precio anterior y ultimo usuario anterior en la lista
 	}
 
-	public LocalDate getPublicationDate() {
+	LocalDate getPublicationDate() {
 		return publicationDate;
 	}
 
-	public void setPublicationDate(LocalDate publicationDate) {
+	private void setPublicationDate(LocalDate publicationDate) {
 		this.publicationDate = publicationDate;
 	}
 
-	public void printHistory(){
+	void printHistory(){
 		this.historial.forEach(History::print);
 	}
 
