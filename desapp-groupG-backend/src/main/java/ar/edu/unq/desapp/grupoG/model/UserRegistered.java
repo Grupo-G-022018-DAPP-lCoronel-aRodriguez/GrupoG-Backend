@@ -24,20 +24,16 @@ public class UserRegistered extends UserState {
 }
 
 	@Override
-	public Auction createAuction(String title, String description, Float price, LocalDate start, LocalDate end,
-			LocalTime endHour, String email) {
+	public Auction createAuction(String title, String description, Float price, LocalDate start, LocalDate end, LocalTime endHour, String email) {
 		  Auction newAuction = new Auction(title,description, price, start, end, endHour);
-	        newAuction.setOwnerEmail(email);
+		  newAuction.setOwnerEmail(email);
 
-	        return newAuction;
-
-		
+		  return newAuction;
 	}
 
 	//se deberia hacer automatico, como??
 	public void bidAuctionAutomaticaly(Auction auction, @NotNull String email, Float maxValue) {
-		 if(auction.getLastBidderName() != email){
-			 if (auction.getCurrentPrice()< maxValue)
+		 if((auction.getLastBidderName() != email) && (auction.getCurrentPrice()< maxValue)){
 				 auction.acceptBid(email);
 		 }
 	            

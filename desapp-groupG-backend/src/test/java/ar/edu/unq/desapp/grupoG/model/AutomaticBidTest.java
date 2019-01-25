@@ -12,8 +12,6 @@ import java.time.LocalTime;
 public class AutomaticBidTest {
 
     private Auction auction;
-    private User subscriber;
-    private User owner;
     private User user;
     private AutomaticBid subastadorAutomatico;
 
@@ -27,7 +25,7 @@ public class AutomaticBidTest {
         auction = new Auction("Subasta", "descripcion de la subasta automatico", price,  start, end, endHour);
 
 
-        subscriber = new User();
+        User subscriber = new User();
         try {
             subscriber.setEmail("suscripto@gmail.com");
         } catch (InvalidEmailException e) {
@@ -40,7 +38,7 @@ public class AutomaticBidTest {
         }
         subscriber.setState(new UserRegistered());
 
-        owner = new User();
+        User owner = new User();
         try {
             owner.setEmail("ownero@gmail.com");
         } catch (InvalidEmailException e) {

@@ -147,7 +147,7 @@ public class Auction extends Observable {
 		return ownerEmail;
 	}
 
-	void setOwnerEmail(String ownerEmail) {
+	public void setOwnerEmail(String ownerEmail) {
 		this.ownerEmail = ownerEmail;
 	}
 
@@ -201,7 +201,7 @@ public class Auction extends Observable {
         history.setAuction(this);
     }
 
-	void acceptBid(String email) {
+	public void acceptBid(String email) {
 		// TODO chequear estado InProgress
 		//this.historial.add(new History(this.lastBidderName,this.currentPrice, this));
         this.addHistory(new History(this.lastBidderName,this.currentPrice, this));
