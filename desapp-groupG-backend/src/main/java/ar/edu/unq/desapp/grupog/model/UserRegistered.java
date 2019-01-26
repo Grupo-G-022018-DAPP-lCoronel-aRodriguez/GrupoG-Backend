@@ -14,7 +14,6 @@ public class UserRegistered extends UserState {
 	public void bidAuction(Auction auction, @NotNull String email) {
 		if (!Objects.equals(auction.getOwnerEmail(), email) && !Objects.equals(auction.getLastBidderName(), email))
 			auction.acceptBid(email);
-
 }
 
 	@Override

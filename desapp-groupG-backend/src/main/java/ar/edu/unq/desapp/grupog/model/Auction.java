@@ -162,10 +162,9 @@ public class Auction extends Observable {
 
 	void acceptBid(String email) {
 		// TODO chequear estado InProgress
-		//this.historial.add(new History(this.lastBidderName,this.currentPrice, this));
-        this.addHistory(new History(this.lastBidderName,this.currentPrice, this));
 		this.setCurrentPrice( (float)(getCurrentPrice() + (getCurrentPrice() * 0.5)));
 		this.setLastBidderName(email);
+		this.addHistory(new History(this.lastBidderName,this.currentPrice, this));
 		this.setChanged();
 		notifyObservers();
 		//antes de sobreecribir el precio, guardamos el precio anterior y ultimo usuario anterior en la lista

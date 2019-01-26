@@ -34,8 +34,6 @@ public class User implements Observer {
 	private String username;
 	private Set<Auction> auctions;
 	private UserState state;
-	private AutomaticBid automatic;
-
 	
 	//Getters, Setters
 	
@@ -141,22 +139,11 @@ public class User implements Observer {
 	
 	
 	Auction createAuction(String title, String description, Float price, LocalDate start, LocalDate end, LocalTime endHour){
-
 		return this.state.createAuction(title,description, price, start, end, endHour, this.email);
-		
     }
 
     void bidAuction(Auction auction) {
-
     	this.state.bidAuction(auction, this.email);
-    	
-    }
-    
-    public void bidAutomatically(Auction auction, Float aPrice) {
-    	if (auction.getLastBidderName() == null) {
-    		//si soy el primero en ofertar 
-    		this.automatic = new AutomaticBid(this,auction,aPrice);
-    	}
     }
 
 
@@ -164,6 +151,4 @@ public class User implements Observer {
 	public void update(Observable auction, Object arg) {
 			this.state.bidAuction((Auction) auction, this.email);
 	}
-
-
 }

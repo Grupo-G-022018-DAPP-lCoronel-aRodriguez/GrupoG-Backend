@@ -46,7 +46,7 @@ public class History {
 		System.out.print("\n");
 		System.out.print("Date:\t\t" + this.date);
 		System.out.print("\n");
-		System.out.print("Auction ID:\t\t" + this.auction.getId());
+		System.out.print("Auction Title:\t\t" + this.auction.getTitle());
 		System.out.print("\n");
 		System.out.print("\n");
 	}

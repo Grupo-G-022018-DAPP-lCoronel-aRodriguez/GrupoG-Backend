@@ -4,6 +4,7 @@ import ar.edu.unq.desapp.grupog.exceptions.InvalidEmailException;
 import ar.edu.unq.desapp.grupog.exceptions.InvalidNameException;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,7 +13,7 @@ public class AutomaticBidTest {
 
     private Auction auction;
     private User user;
-    private AutomaticBid subastadorAutomatico;
+    private User subscriber;
 
     @Before
     public void setUp(){
@@ -24,7 +25,7 @@ public class AutomaticBidTest {
         auction = new Auction("Subasta", "descripcion de la subasta automatico", price,  start, end, endHour);
 
 
-        User subscriber = new User();
+        subscriber = new User();
         try {
             subscriber.setEmail("suscripto@gmail.com");
         } catch (InvalidEmailException e) {
@@ -63,21 +64,18 @@ public class AutomaticBidTest {
             e.printStackTrace();
         }
         user.setState(new UserRegistered());
-
-        auction.addObserver(subscriber);
-        //subastadorAutomatico = new AutomaticBid(subscriber,auction,(float)1000);
     }
 
     @Test
     public void testSubastadorAutomatico(){
-        //esta como automatico
         //subasta el otro user
         float currentPrice = auction.getCurrentPrice();
+        auction.addObserver(subscriber);
         user.bidAuction(auction);
         //automatic bid
         assert(currentPrice < auction.getCurrentPrice());
-        //System.out.print(auction.getCurrentPrice());
-        //auction.printHistory();
+        assert(auction.getCurrentPrice() == 225.0);
+        auction.printHistory();
         //el precio cambio
     }
 
